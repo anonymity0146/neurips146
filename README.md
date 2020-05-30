@@ -13,7 +13,7 @@
 
 ### data preparation
 
-To reproduce the results on [2] and [3], coco and wikiart datasets should be downloaded to the root path. Details can be accessed in project page and [project page](https://github.com/sunshineatnoon/LinearStyleTransfer).
+To reproduce the results on [2] and [3], coco and wikiart datasets should be downloaded to the root path. Details can be accessed in [project page[2]](https://github.com/abhiskk/fast-neural-style) and [project page[3]](https://github.com/sunshineatnoon/LinearStyleTransfer).
 
 ### stylization generation
 
