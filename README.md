@@ -24,12 +24,12 @@ NST_resnet_variant.py
 NST_inception.py
 NST_wrn.py
 ```
-2. To reproduce comparison results across different architectures based on [2],
+2. To reproduce comparison results across different architectures based on [2], download [[2]](https://github.com/abhiskk/fast-neural-style) and put our codes below on the root path.
 ```
 fast_neural_style_resnet.py
 fast_neural_style_resnet_softmax.py
 ```
-3. To reproduce comparison results across different architectures based on [3],
+3. To reproduce comparison results across different architectures based on [3], download [[3]](https://github.com/sunshineatnoon/LinearStyleTransfer) and put our codes below on the root path.
 ```
 Linear_Train_resnet.py
 Linear_Train_resnet_softmax.py
