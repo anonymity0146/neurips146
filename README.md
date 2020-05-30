@@ -18,10 +18,25 @@ To reproduce the results on [2] and [3], coco and wikiart datasets should be dow
 ### stylization generation
 
 1. To reproduce our basic results and ablation studys,
-
-2. To reproduce comparison results across different architectures on [2],
-
-3. To reproduce comparison results across different architectures on [3],
+```
+NST_vgg_variant.py
+NST_resnet_variant.py
+NST_inception.py
+NST_wrn.py
+```
+2. To reproduce comparison results across different architectures based on [2],
+```
+fast_neural_style_resnet.py
+fast_neural_style_resnet_softmax.py
+```
+3. To reproduce comparison results across different architectures based on [3],
+```
+Linear_Train_resnet.py
+Linear_Train_resnet_softmax.py
+Linear_Train_resnet_random.py
+Linear_Train_resnet_random_softmax.py
+Linear_TestArtistic_resnet.py
+```
 
 ## References
 
