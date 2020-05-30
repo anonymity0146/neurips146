@@ -13,7 +13,7 @@
 
 ### data preparation
 
-To reproduce the results on [2] and [3], coco and wikiart datasets should be downloaded to the root path. Details can be accessed in project page and project page.
+To reproduce the results on [2] and [3], coco and wikiart datasets should be downloaded to the root path. Details can be accessed in project page and [project page](https://github.com/sunshineatnoon/LinearStyleTransfer).
 
 ### stylization generation
 
@@ -26,5 +26,7 @@ To reproduce the results on [2] and [3], coco and wikiart datasets should be dow
 ## References
 
 [1] Gatys, L.A., Ecker, A.S. and Bethge, M., Image style transfer using convolutional neural networks, CVPR, 2016.
+
 [2] Johnson, J., Alahi, A. and Fei-Fei, L., Perceptual losses for real-time style transfer and super-resolution, ECCV, 2016.
+
 [3] Li, X., Liu, S., Kautz, J. and Yang, M.H., Learning linear transformations for fast image and video style transfer, CVPR, 2019.
