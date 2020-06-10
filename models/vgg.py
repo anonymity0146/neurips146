@@ -183,6 +183,10 @@ def make_layers_started_resnet_wo_bn(cfg, batch_norm=False):
             conv2d_7x7 = nn.Conv2d(in_channels, 64, kernel_size=7, stride=2, padding=3, bias=False)
             layers += [conv2d_7x7, nn.ReLU(inplace=True)]
             in_channels = 64
+        elif v == 'conv7x7_512':
+            conv2d_7x7 = nn.Conv2d(in_channels, 512, kernel_size=7, stride=2, padding=3, bias=False)
+            layers += [conv2d_7x7, nn.ReLU(inplace=True)]
+            in_channels = 512
         elif v == 'conv1x1':
             conv2d_1x1 = nn.Conv2d(in_channels, in_channels, kernel_size=1, bias=False)
             layers += [conv2d_1x1, nn.ReLU(inplace=True)]
@@ -198,6 +202,19 @@ def make_layers_started_resnet_wo_bn(cfg, batch_norm=False):
             conv2d_1x1 = nn.Conv2d(256, 512, kernel_size=1, bias=False)
             layers += [conv2d_1x1]
             in_channels = 512
+        elif v == 'conv1x1_128to64':
+            conv2d_1x1 = nn.Conv2d(128, 64, kernel_size=1, bias=False)
+            layers += [conv2d_1x1]
+            in_channels = 64
+        elif v == 'conv1x1_256to128':
+            conv2d_1x1 = nn.Conv2d(256, 128, kernel_size=1, bias=False)
+            layers += [conv2d_1x1]
+            in_channels = 128
+        elif v == 'conv1x1_512to256':
+            conv2d_1x1 = nn.Conv2d(512, 256, kernel_size=1, bias=False)
+            layers += [conv2d_1x1]
+            in_channels = 256
+
         else:
             conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1, bias=False)
             if batch_norm:
@@ -220,6 +237,10 @@ def make_layers_started_resnet(cfg, batch_norm=False):
             conv2d_7x7 = nn.Conv2d(in_channels, 64, kernel_size=7, stride=2, padding=3, bias=False)
             layers += [conv2d_7x7, nn.BatchNorm2d(64), nn.ReLU(inplace=True)]
             in_channels = 64
+        elif v == 'conv7x7_512':
+            conv2d_7x7 = nn.Conv2d(in_channels, 512, kernel_size=7, stride=2, padding=3, bias=False)
+            layers += [conv2d_7x7, nn.BatchNorm2d(512), nn.ReLU(inplace=True)]
+            in_channels = 512
         elif v == 'conv1x1':
             conv2d_1x1 = nn.Conv2d(in_channels, in_channels, kernel_size=1, bias=False)
             layers += [conv2d_1x1, nn.BatchNorm2d(in_channels), nn.ReLU(inplace=True)]
@@ -235,6 +256,19 @@ def make_layers_started_resnet(cfg, batch_norm=False):
             conv2d_1x1 = nn.Conv2d(256, 512, kernel_size=1, bias=False)
             layers += [conv2d_1x1, nn.BatchNorm2d(512)]
             in_channels = 512
+        elif v == 'conv1x1_128to64':
+            conv2d_1x1 = nn.Conv2d(128, 64, kernel_size=1, bias=False)
+            layers += [conv2d_1x1, nn.BatchNorm2d(64)]
+            in_channels = 64
+        elif v == 'conv1x1_256to128':
+            conv2d_1x1 = nn.Conv2d(256, 128, kernel_size=1, bias=False)
+            layers += [conv2d_1x1, nn.BatchNorm2d(128)]
+            in_channels = 128
+        elif v == 'conv1x1_512to256':
+            conv2d_1x1 = nn.Conv2d(512, 256, kernel_size=1, bias=False)
+            layers += [conv2d_1x1, nn.BatchNorm2d(256)]
+            in_channels = 256
+
         else:
             conv2d = nn.Conv2d(in_channels, v, kernel_size=3, padding=1, bias=False)
             if batch_norm:
@@ -273,9 +307,8 @@ cfg = {
     'J4': ['conv7x7', 'M2', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128, 'conv1x1', 'M', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256,
            'conv1x1', 'conv1x1', 256, 'conv1x1', 'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1',
            'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'M'],
-    'J5': [64, 64, 'M', 'conv1x1', 64, 'conv1x1', 'conv1x1', 64, 'conv1x1', 'M', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128,
-           'conv1x1', 'conv1x1', 128, 'conv1x1', 'M', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1',
-           'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'M'],
+    'J5': [512, 512, 'M', 512,  512, 'M', 'conv1x1_512to256', 256, 256, 256, 256, 'M', 'conv1x1_256to128', 128, 128, 128, 128,
+           'M', 'conv1x1_128t64', 64, 64, 64, 64, 'M'],
     'J6': [64, 64, 'M', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128, 'conv1x1', 'M', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256,
            'conv1x1', 'conv1x1', 256, 'conv1x1', 'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1',
            'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'M'],
@@ -283,14 +316,15 @@ cfg = {
           'conv1x1', 256, 'conv1x1', 'M', 'conv1x1', 512, 'conv1x1', 512, 'conv1x1', 512, 'conv1x1', 512, 'conv1x1', 'M', 'conv1x1',
           512, 'conv1x1', 512, 'conv1x1', 512, 'conv1x1', 512, 'conv1x1', 'M'],
     'J8': [64, 64, 'M', 'conv1x1_64to128', 128, 128, 'M', 'conv1x1_128to256', 256, 256, 256, 256, 'M', 'conv1x1_256to512', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
-    'J9': [64, 64, 'M', 64, 64, 'M', 128, 128, 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M'],
+    'J9': [64, 64, 'M', 'conv1x1_64to128', 128, 'conv1x1_128to64', 64, 'conv1x1_64to128', 128, 'M', 'conv1x1_128to256', 256, 'conv1x1_256to128', 128, 'conv1x1_128to256', 256, 'M', 'conv1x1_256to512', 512, 'conv1x1_512to256', 256, 'conv1x1_256to512', 512, 'M'],
     'J10': ['conv7x7', 'M2', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
     'J11': ['conv7x7', 'M2', 'conv1x1_64to128', 128, 128, 'M', 'conv1x1_128to256', 256, 256, 256, 256, 'M', 'conv1x1_256to512', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
     'J12': [64, 64, 'M', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128, 'conv1x1', 'M', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256,
            'conv1x1', 'conv1x1', 256, 'conv1x1', 'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1',
            'M', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'conv1x1', 512, 'conv1x1', 'M'],
-    'J13': [64, 64, 'M', 'conv1x1', 128, 128, 'conv1x1', 'M', 'conv1x1', 256, 256, 256, 256, 'conv1x1', 'M', 'conv1x1', 512, 512, 512, 512, 'conv1x1', 'M', 'conv1x1', 512, 512, 512, 512, 'conv1x1', 'M'],
-    'J14': [64, 64, 'M', 'conv1x1', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
+    'J13': ['conv7x7', 'M2', 'conv1x1_64to128', 128, 'conv1x1_128to64', 64, 'conv1x1_64to128', 128, 'M', 'conv1x1_128to256', 256, 'conv1x1_256to128', 128, 'conv1x1_128to256', 256, 'M', 'conv1x1_256to512', 512, 'conv1x1_512to256', 256, 'conv1x1_256to512', 512, 'M'],
+    'J14': ['conv7x7_512', 'M2', 512,  512, 'M', 'conv1x1_512to256', 256, 256, 256, 256, 'M', 'conv1x1_256to128', 128, 128, 128, 128,
+           'M', 'conv1x1_128t64', 64, 64, 64, 64, 'M'],
     'J15': ['conv7x7', 128, 128, 'M', 256, 256, 256, 256, 'M', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
     'J16': ['conv7x7', 'conv1x1_64to128', 128, 128, 'M', 'conv1x1_128to256', 256, 256, 256, 256, 'M', 'conv1x1_256to512', 512, 512, 512, 512, 'M', 512, 512, 512, 512, 'M'],
     'J17': ['conv7x7', 'conv1x1', 128, 'conv1x1', 'conv1x1', 128, 'conv1x1', 'M', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256, 'conv1x1', 'conv1x1', 256,
